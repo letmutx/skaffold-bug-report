@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Hasty inference engine deployment
+name: hasty-inference-engine
+version: 1.0.0

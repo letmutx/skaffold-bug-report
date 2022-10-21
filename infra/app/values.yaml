@@ -1,0 +1,4 @@
+image:
+  repository: binaries
+  tag: v0.0.1
+  pullPolicy: IfNotPresent

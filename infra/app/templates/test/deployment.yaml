@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test
+  labels:
+    app: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      serviceAccountName: "job-manager"
+      containers:
+        - name: test
+          image: "{{ .Values.imageKey }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          command: [ "/test" ]
+          env:
+            - name: SUPERVISOR_DOCKER_IMG
+              value: "{{ .Values.imageKey }}"
+          ports:
+            - containerPort: 8080
+              name: http

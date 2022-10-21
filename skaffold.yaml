@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: inference-engine
+build:
+  artifacts:
+  - image: binaries
+  local:
+    useBuildkit: true
+    concurrency: 0
+deploy:
+  helm:
+    releases:
+      - name: inference-engine
+        chartPath: infra/app/
+        artifactOverrides:
+          imageKey: binaries
+        namespace: default
+        imageStrategy:
+          fqn: {}
